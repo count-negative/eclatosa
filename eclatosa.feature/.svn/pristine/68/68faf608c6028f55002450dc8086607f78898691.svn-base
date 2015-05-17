@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/eclatosa.feature_1.0.0.jar" id="eclatosa.feature" version="1.0.0">
+      <category name="eclatosa"/>
+   </feature>
+   <category-def name="eclatosa" label="eclatosa"/>
+</site>
