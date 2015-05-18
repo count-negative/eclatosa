@@ -10,7 +10,7 @@
    </description>
 
    <url>
-      <update label="eclatosa" url="http://eclatosa.googlecode.com/svn/trunk/eclatosa.updatesite"/>
+      <update label="eclatosa" url="https://bitbucket.org/count_negative/eclatosa/src/master/eclatosa.updatesite/"/>
    </url>
 
    <plugin
