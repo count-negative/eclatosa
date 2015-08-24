@@ -7,6 +7,9 @@
       <category name="eclatosa_backup"/>
    </feature>
    <feature url="features/eclatosa.feature_1.0.2.jar" id="eclatosa.feature" version="1.0.2">
+      <category name="eclatosa_backup"/>
+   </feature>
+   <feature url="features/eclatosa.feature_1.0.3.jar" id="eclatosa.feature" version="1.0.3">
       <category name="eclatosa"/>
    </feature>
    <category-def name="eclatosa" label="eclatosa"/>
