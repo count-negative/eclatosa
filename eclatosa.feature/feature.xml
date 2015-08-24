@@ -2,7 +2,7 @@
 <feature
       id="eclatosa.feature"
       label="eclatosa"
-      version="1.0.2"
+      version="1.0.3"
       provider-name="count.negative">
 
    <description url="https://bitbucket.org/count_negative/eclatosa/src/master/eclatosa.updatesite">
@@ -17,7 +17,7 @@
          id="eclatosa.plugin"
          download-size="5"
          install-size="5"
-         version="1.0.2"
+         version="1.0.3"
          unpack="false"/>
 
 </feature>
