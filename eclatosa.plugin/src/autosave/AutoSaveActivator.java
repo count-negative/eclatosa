@@ -17,11 +17,10 @@
 package autosave;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWindowListener;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -44,7 +43,7 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext )
 	 */
 	@Override
@@ -55,7 +54,7 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public void registerListener() {
 		final IPreferenceStore store = AutoSaveActivator.getDefault().getPreferenceStore();
@@ -74,28 +73,12 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 				public void windowDeactivated(final IWorkbenchWindow window) {
 					boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
 					if (isEnabled) {
-						final IWorkbenchPage[] pages = window.getPages();
-						if (pages == null) {
-							return;
-						}
-						for (int i = 0; i < pages.length; i++) {
-							final IWorkbenchPage page = pages[i];
-							if (page == null) {
-								continue;
-							}
-							final IEditorPart activeEditor = page.getActiveEditor();
-							if (activeEditor == null) {
-								continue;
-							}
-							if (activeEditor.isDirty()) {
-								page.saveAllEditors(false);
-							}
-						}
+						PlatformUI.getWorkbench().saveAllEditors(false);
 					}
 				}
 
 				@Override
-				public void windowOpened(final IWorkbenchWindow arg0) {
+				public void windowOpened(final IWorkbenchWindow window) {
 				}
 			});
 		}
@@ -103,7 +86,7 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext )
 	 */
 	@Override
@@ -114,7 +97,7 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 
 	/**
 	 * Returns the shared instance
-	 * 
+	 *
 	 * @return the shared instance
 	 */
 	public static AutoSaveActivator getDefault() {
@@ -123,7 +106,7 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.IStartup#earlyStartup()
 	 */
 	@Override
