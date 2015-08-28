@@ -5,9 +5,8 @@ Saves all open editors in eclipse when deactivating the eclipse window (like in 
 ## eclipse update site: ##
 
 ```
-#!java
-https://bitbucket.org/count_negative/eclatosa/raw/6c1bdee9b4e696de0f27b625a7bbcc50a49f7096/eclatosa.updatesite/site.xml
+http://raw.githubusercontent.com/count-negative/eclatosa/master/eclatosa.updatesite/site.xml
 ```
 
-![pref1.png](https://bitbucket.org/repo/oKrByG/images/3162685694-pref1.png)
-![pref2.png](https://bitbucket.org/repo/oKrByG/images/3297841172-pref2.png)
+![pref1.png](http://raw.githubusercontent.com/count-negative/eclatosa/master/eclatosa.updatesite/doc/images/3162685694-pref1.png)
+![pref2.png](http://raw.githubusercontent.com/count-negative/eclatosa/master/eclatosa.updatesite/doc/images/3297841172-pref2.png)
