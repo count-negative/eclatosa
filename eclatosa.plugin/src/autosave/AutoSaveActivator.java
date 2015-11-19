@@ -73,7 +73,11 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 				public void windowDeactivated(final IWorkbenchWindow window) {
 					boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
 					if (isEnabled) {
-						PlatformUI.getWorkbench().saveAllEditors(false);
+						try {
+							PlatformUI.getWorkbench().saveAllEditors(false);
+						} catch (Exception e) {
+							// nuff
+						}
 					}
 				}
 
