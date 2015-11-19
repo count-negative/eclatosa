@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: eclipse AutoSave Plug-in
 Bundle-SymbolicName: eclatosa.plugin;singleton:=true
-Bundle-Version: 1.0.3
+Bundle-Version: 1.0.4
 Bundle-Activator: autosave.AutoSaveActivator
 Bundle-Vendor: count.negative
 Require-Bundle: org.eclipse.ui,
