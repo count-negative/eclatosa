@@ -58,7 +58,7 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 	 */
 	public void registerListener() {
 		final IPreferenceStore store = AutoSaveActivator.getDefault().getPreferenceStore();
-		boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
+		final boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
 		if (isEnabled) {
 			getWorkbench().addWindowListener(new IWindowListener() {
 				@Override
@@ -71,12 +71,12 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 
 				@Override
 				public void windowDeactivated(final IWorkbenchWindow window) {
-					boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
+					final boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
 					if (isEnabled) {
 						try {
 							PlatformUI.getWorkbench().saveAllEditors(false);
-						} catch (Exception e) {
-							// nuff
+						} catch (final Throwable e) {
+							// nuff, and catch throwable cause of SWTErrors
 						}
 					}
 				}
