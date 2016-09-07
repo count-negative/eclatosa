@@ -16,6 +16,8 @@
  */
 package autosave;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWindowListener;
@@ -34,6 +36,8 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 	public static final String PLUGIN_ID = "AutoSave";
 	// The shared instance
 	private static AutoSaveActivator plugin;
+
+	private static final AtomicBoolean triggeredSave = new AtomicBoolean(false);
 
 	/**
 	 * The constructor
@@ -74,7 +78,11 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 					final boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
 					if (isEnabled) {
 						try {
-							PlatformUI.getWorkbench().saveAllEditors(false);
+							if (!triggeredSave.getAndSet(true)) {
+								PlatformUI.getWorkbench().saveAllEditors(false);
+							} else {
+								triggeredSave.set(false);
+							}
 						} catch (final Throwable e) {
 							// nuff, and catch throwable cause of SWTErrors
 						}
