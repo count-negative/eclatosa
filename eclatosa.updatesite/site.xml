@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/eclatosa_1.0.5.jar" id="eclatosa" version="1.0.5">
+   <feature url="features/eclatosa_1.0.6.jar" id="eclatosa" version="1.0.6">
       <category name="eclatosa"/>
    </feature>
    <category-def name="eclatosa" label="eclatosa"/>
