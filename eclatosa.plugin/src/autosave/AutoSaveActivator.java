@@ -80,11 +80,11 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 						try {
 							if (!triggeredSave.getAndSet(true)) {
 								PlatformUI.getWorkbench().saveAllEditors(false);
-							} else {
 								triggeredSave.set(false);
-							}
+							} 
 						} catch (final Throwable e) {
-							// nuff, and catch throwable cause of SWTErrors
+							// do not save again, and catch throwable cause of SWTErrors
+							triggeredSave.set(true);
 						}
 					}
 				}
