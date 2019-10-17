@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 package autosave;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWindowListener;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -34,6 +37,8 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 	public static final String PLUGIN_ID = "AutoSave";
 	// The shared instance
 	private static AutoSaveActivator plugin;
+
+	private static final AtomicInteger triggeredSave = new AtomicInteger(0);
 
 	/**
 	 * The constructor
@@ -75,15 +80,23 @@ public class AutoSaveActivator extends AbstractUIPlugin implements IStartup {
 					final boolean isEnabled = store.getBoolean(AutoSavePreferencePage.ENABLED);
 					if (isEnabled) {
 						try {
-							PlatformUI.getWorkbench().saveAllEditors(false);
+							if (triggeredSave.incrementAndGet() < 10) {
+								final IWorkbench workbench = PlatformUI.getWorkbench();
+								workbench.getDisplay().asyncExec(new Runnable() {
+									public void run() {
+										workbench.saveAllEditors(false);
+										triggeredSave.decrementAndGet();
+									}
+								});
+							}
 						} catch (final Throwable e) {
-							// do not save again, and catch throwable cause of SWTErrors
+							getLog().log(new Status(Status.ERROR, PLUGIN_ID, "catched throwable", e));
 						}
 					}
 				}
 
 				@Override
-				public void windowOpened(final IWorkbenchWindow window) {
+				public void windowOpened(final IWorkbenchWindow arg0) {
 				}
 			});
 		}
