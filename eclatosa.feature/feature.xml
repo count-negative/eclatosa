@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="eclatosa"
+      label="eclatosa"
+      version="1.0.8"
+      provider-name="count.negative">
+
+   <description url="http://raw.githubusercontent.com/count-negative/eclatosa/master/eclatosa.updatesite/site.xml">
+      eclatosa is an autosave plugin for eclipse
+   </description>
+
+   <url>
+      <update label="eclatosa" url="http://raw.githubusercontent.com/count-negative/eclatosa/master/eclatosa.updatesite/site.xml"/>
+   </url>
+
+   <plugin
+         id="eclatosa"
+         download-size="5"
+         install-size="5"
+         version="1.0.7"
+         unpack="false"/>
+
+</feature>
